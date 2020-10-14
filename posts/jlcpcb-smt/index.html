@@ -34,11 +34,13 @@ I went with JLCPCB / <a href="https://easyeda.com">EasyEDA</a> because they inte
 <ol>
 <li>Design your schematic.</li>
 <li>Lay out your PCB.</li>
-<li>Fill out your BOM.</li>
+<li>Fill out your BOM (Bill of Materials).</li>
 <li>Send the Gerber, BOM, and PNP files to JLCPCB for manufacture / assembly.</li>
 </ol>
-<p>I found the BOM (Bill of Materials) to be the trickiest part of this.
-While JLCPCB and EasyEDA are partnered with (or possibly actually the same company as) LCSC, a component supplier with over 100k parts, JLCPCB&rsquo;s SMT service supports a much smaller subset, so I found that it&rsquo;s much easier to constantly consult <a href="https://jlcpcb.com/parts">JLCPCB&rsquo;s parts page</a> while designing your schematic.</p>
+<p>I found the BOM to be the trickiest part of this.
+While JLCPCB and EasyEDA are partnered with (or possibly actually the same company as) LCSC, a component supplier with over 100k parts, JLCPCB&rsquo;s SMT service supports a much smaller subset.
+I found that it&rsquo;s much easier to constantly consult <a href="https://jlcpcb.com/parts">JLCPCB&rsquo;s parts page</a> while designing your schematic.
+This helps you avoid surprises later on.</p>
 <p>EasyEDA has <a href="https://docs.easyeda.com/en/Introduction/Introduction-to-EasyEDA/index.html">very detailed documentation</a>.
 In this post I&rsquo;m going to explain the basics and what is needed specifically to get SMT assembly from JLCPCB.</p>
 <h1 id="designing-your-schematic">Designing your schematic</h1>
@@ -55,7 +57,7 @@ This also has the side effect of naming that net &ndash; net names are visible i
 <h2 id="part-selection-for-jlcpcb">Part selection for JLCPCB</h2>
 <p>If you&rsquo;re planning on having JLCPCB assemble your boards for you, then you&rsquo;ll want to stick to parts that JLCPCB can support.
 All of the parts supported by JLCPCB are listed on their <a href="https://jlcpcb.com/parts">parts page</a>.
-If there&rsquo;s a specific part they don&rsquo;t support, you can probably find that part in the Library and use it in your schematic / PCB design, but JLCPCB won&rsquo;t populate it for you &ndash; you&rsquo;ll have to solder it yourself.
+If there&rsquo;s a specific part they don&rsquo;t support, you can probably find that part in EasyEDA&rsquo;s Library and use it in your schematic / PCB design, but JLCPCB won&rsquo;t populate it for you &ndash; you&rsquo;ll have to solder it yourself.
 For these parts, you&rsquo;ll want to make sure you stick to parts you are capable of soldering yourself.
 If you don&rsquo;t have the equipment to do SMT reflow at home, this probably means sticking to larger-pitch SMT or through-hole components.</p>
 <h3 id="basic-vs-extended">Basic vs Extended</h3>
@@ -75,13 +77,14 @@ If you use less than the minimum quantity, they charge you as if you had ordered
 Many simple components, like resistors and capacitors, cost fractions of a cent, so this doesn&rsquo;t matter much.
 However, for ICs it may matter more.
 In my board, I used the <a href="https://jlcpcb.com/parts/componentSearch?searchTxt=C74192">XL1509</a>, which is LCSC part <code>C74192</code>.
-JLCPCB&rsquo;s parts page shows you that this costs about 19 cents each, but does not tell you the order quantity.</p>
+JLCPCB&rsquo;s parts page shows you that this costs about 19 cents each, but does not tell you the order quantity.
+This part ends up having a minimum order quantity of 10, so even though I only needed 5 (for an order of 5 boards), I&rsquo;m paying for another 5 that I&rsquo;m not going to use.</p>
 <p>For small, cheap components like resistors and MLCC capacitors, it seems like generally the minimum quantity is 40.
 For slightly less cheap components like diodes, inductors, tantalum capacitors, the minimum quantity is generally 20.
 For ICs, the minimum quantity is probably 10.</p>
 <p>In hindsight, I should have ordered 10 copies of my PCB instead of 5. This would have cost me $24+shipping instead of $22+shipping.
 (20 would have cost me $33, 30 would have cost $38.)</p>
-<h1 id="laying-out-your-schematic">Laying out your schematic</h1>
+<h1 id="laying-out-your-pcb">Laying out your PCB</h1>
 <p>Once you&rsquo;ve designed your schematic, you need to turn it into a PCB layout.
 In EasyEDA, go to <code>Design</code> &gt; <code>Convert to PCB</code>.
 This will create a PCB file within your project, and drop you into the PCB editor.</p>
@@ -130,8 +133,8 @@ New components will be placed somewhere outside the PCB boundary, and ratlines w
 <h1 id="filling-out-your-bom">Filling out your BOM</h1>
 <p>If you used parts from EELib when designing your schematic, these won&rsquo;t have LCSC / JLCPCB part numbers associated with them.
 You&rsquo;ll need to associate them with parts that JLCPCB knows about.
-You can do this within EasyEDA or later, withiin the JLCPCB ordering flow later.
-If you only ever placed components on your schematic by referencing the LCSC part number from the JLCPCB parts page, then you won&rsquo;t need to do anything here.</p>
+You can do this within EasyEDA or later, within the JLCPCB ordering flow.
+If you only ever placed components on your schematic by referencing the LCSC part number from the JLCPCB parts page, then your BOM should already be complete.</p>
 <h2 id="parts-you-dont-want-jlcpcb-to-place">Parts you don&rsquo;t want JLCPCB to place</h2>
 <p>Some components in your circuit may not be available at JLCPCB, or you don&rsquo;t want them populated on the assembled boards for some reason.
 For these parts, you can tell EasyEDA not to bother including them in the BOM by:</p>
@@ -140,6 +143,7 @@ For these parts, you can tell EasyEDA not to bother including them in the BOM by
 <li>For <code>Add to BOM</code>, select <code>No</code>.</li>
 <li>Click <code>Update</code>.</li>
 </ol>
+<p>(You can also leave them in your BOM, and tell JLCPCB not to place them while ordering.)</p>
 <h2 id="within-easyeda">Within EasyEDA</h2>
 <p>If you&rsquo;ve got a bunch of components that need part numbers, you can do them quickly from the BOM view in EasyEDA.
 From either the PCB or Schematic, go to <code>Fabrication</code> &gt; <code>BOM...</code>.
@@ -149,13 +153,14 @@ I&rsquo;ve found this frequently thinks a component is not available for assembl
 <strong>Always trust the JLCPCB parts page over anything you see in EasyEDA.</strong></p>
 <ul>
 <li><code>Fabrication</code> &gt; <code>BOM...</code></li>
-<li>right click component &gt; <code>Attributes...</code>, <code>Supplier Part</code></li>
+<li>right click component &gt; <code>Attributes...</code> &gt;  <code>Supplier Part</code></li>
 </ul>
-<h2 id="within-jlcpcb-order-flow">Within JLCPCB order flow&hellip;</h2>
+<h2 id="within-jlcpcb-order-flow">Within JLCPCB order flow</h2>
 <p>Follow the instructions below for sending Gerber/BOM/PNP files to JLCPCB.
 When you get to the part review phase, select your components.
 More details are below.</p>
 <h1 id="sending-the-files-to-jlcpcb">Sending the files to JLCPCB</h1>
+<h2 id="downloading-the-files-from-easyeda">Downloading the files from EasyEDA</h2>
 <p>You&rsquo;ll need to export three files for JLCPCB to build and assemble your PCBs:</p>
 <ol>
 <li>The Gerber file. This zip file describes the PCB itself &ndash; where the boundaries, tracks, pads, through-holes, vias, etc. are on the PCB.</li>
@@ -179,33 +184,40 @@ This will open a dialog box.
 Unless you&rsquo;re panelizing or having assembly done by somebody other than JLCPCB, leave the checkboxes unchecked.
 Click <code>Export</code>.
 This will download another CSV file.</p>
-<p>To order your PCBs and assembly:</p>
-<ol>
-<li>Go to <a href="https://cart.jlcpcb.com/quote">the order page</a>, or click &ldquo;Quote Now&rdquo; on the JLCPCB home page. (If you clicked <code>Order at JLCPCB</code> when generating the Gerber file, you can go to that tab and skip the next step.)</li>
-<li>Click &ldquo;Add your Gerber File&rdquo; and select the zip file you downloaded.</li>
-<li>Most of the important parameters should be populated after the Gerber file is uploaded. Adjust the other options, such as , but be aware that if you&rsquo;re ordering SMT service, you&rsquo;re pretty limited in your PCB options for some reason (specific restrictions are listed on this order page or at their <a href="https://jlcpcb.com/smt-assembly">marketing page for the SMT service</a>). Only green PCBs :(</li>
-<li>Click the switch next to <code>SMT Assembly</code>.
-Choose whether you want the top or bottom side assembled by JLCPCB, and verify the quantity.
+<h2 id="ordering-pcbs-and-smt-assembly">Ordering PCBs and SMT Assembly</h2>
+<h3 id="upload-the-gerber-file">Upload the Gerber file</h3>
+<p>Go to <a href="https://cart.jlcpcb.com/quote">the order page</a>, or click &ldquo;Quote Now&rdquo; on the JLCPCB home page. (If you clicked <code>Order at JLCPCB</code> when generating the Gerber file, you can go to that tab and skip the next step.)
+Click &ldquo;Add your Gerber File&rdquo; and select the zip file you downloaded.
+Most of the important parameters should be populated after the Gerber file is uploaded.
+Adjust the other options, such as quantity, but be aware that if you&rsquo;re ordering SMT service, you&rsquo;re pretty limited in your PCB options for some reason.
+(Specific restrictions are listed on this order page or at their <a href="https://jlcpcb.com/smt-assembly">marketing page for the SMT service</a>.)
+Only green PCBs :(</p>
+<h3 id="upload-bom-and-cpl-pick-and-place-files">Upload BOM and CPL (pick-and-place) files</h3>
+<p>Enable the switch next to <code>SMT Assembly</code>.
+Choose whether you want the top or bottom side assembled by JLCPCB, and verify the quantity of boards.
 If you&rsquo;re ordering 5 or 10 boards and enjoy soldering SMT components by hand, you can choose to have JLCPCB only solder 2 of boards for you.
-I&rsquo;m not sure if they ship you all the components for the other 3 or 8 boards.</li>
-<li>Click <code>Confirm</code>. Sometimes this drops me back on the same page, and I have to scroll down and click Confirm again.</li>
-<li>Click <code>Add BOM file</code> and select the BOM CSV. It should be named <code>BOM_&lt;project name&gt;_&lt;date&gt;_&lt;time&gt;.csv</code>.</li>
-<li>Click <code>Add CPL file</code> and select the pick-and-place file, which should be named <code>PickAndPlace_&lt;PCB file name&gt;_&lt;date&gt;_&lt;time&gt;.csv</code>.</li>
-<li>Click <code>Next</code>.
-You should see a table of all your BOM entries and what parts they are.
+I&rsquo;m not sure if they ship you all the components they don&rsquo;t solder.</p>
+<p>Click <code>Confirm</code>.
+Sometimes this drops me back on the same page, and I have to scroll down and click Confirm again.</p>
+<p>Click <code>Add BOM file</code> and select the BOM CSV.
+It should be named <code>BOM_&lt;project name&gt;_&lt;date&gt;_&lt;time&gt;.csv</code>.</p>
+<p>Click <code>Add CPL file</code> and select the pick-and-place file, which should be named <code>PickAndPlace_&lt;PCB file name&gt;_&lt;date&gt;_&lt;time&gt;.csv</code>.</p>
+<p>Click <code>Next</code>.</p>
+<h3 id="verify-your-parts">Verify your parts</h3>
+<p>You should see a table of all your BOM entries and what parts they are.
 Double-check that JLCPCB knows about all the parts in your BOM.
 If you want a part to be left off your board, you can uncheck <code>Confirmed</code>.
 If a part number is missing, you can click the little magnifying glass icon in the <code>Matched Part Detail</code> column and search for a component.
 This search interface is more limited than the <a href="https://jlcpcb.com/parts">main parts search page</a>, so you may want to cross-reference.
-Check to make sure all the parts are <code>Basic Part</code>s, except for the ones you expect to be extended parts.</li>
-<li>Click Next, review everything, and click Save to Cart.
-If you want to change the number of PCBs, it&rsquo;s easier to do that after you&rsquo;ve saved to cart than clicking <code>Go Back</code> all the way to the first page and redoing steps 2-9.</li>
-<li>If you&rsquo;ve gone through this flow multiple times (e.g. to correct an error) then you might have multiple PCB/SMT assembly items in your shopping cart; make sure you only select the one you want to order, and click <code>Checkout Securely</code>.</li>
-<li>Fill out your billing and shipping addresses, and click <code>Continue</code></li>
-<li>Choose your shipping method. For me, the two options shown by default were both about $16 or $17. If you aren&rsquo;t in a hurry, and want to save money, you can click <code>More</code> and it may show you a cheaper option. Unfortunately you&rsquo;ll have to select each of the options in turn to see how much they cost.</li>
-<li>Click <code>Continue</code>, then <code>Submit Order</code>, then enter your payment info.</li>
-<li>After you&rsquo;ve placed your order, keep an eye out for emails from JLCPCB Support &ndash; they wanted me to confirm the orientation of components such as diodes, capacitors, and ICs.</li>
-</ol>
+Check to make sure all the parts are <code>Basic Part</code>s, except for the ones you expect to be extended parts.</p>
+<p>Click Next, review everything, and click Save to Cart.
+If you want to change the number of PCBs, it&rsquo;s easier to do that after you&rsquo;ve saved to cart than clicking <code>Go Back</code> all the way to the first page and redoing all the previous steps.</p>
+<p>If you&rsquo;ve gone through this flow multiple times (e.g. to correct an error) then you might have multiple PCB/SMT assembly items in your shopping cart.
+Make sure you deselect or delete the ones you don&rsquo;t want to order, and then click <code>Checkout Securely</code>.</p>
+<p>Fill out your billing and shipping addresses, and click <code>Continue</code>.</p>
+<p>Choose your shipping method. For me, the two options shown by default were both about $16 or $17. If you aren&rsquo;t in a hurry, and want to save money, you can click <code>More</code> and it may show you a cheaper option. Unfortunately you&rsquo;ll have to select each of the options in turn to see how much they cost.</p>
+<p>Click <code>Continue</code>, then <code>Submit Order</code>, then enter your payment info.</p>
+<p>After you&rsquo;ve placed your order, keep an eye out for emails from JLCPCB Support &ndash; they wanted me to confirm the orientation of components such as diodes, capacitors, and ICs.</p>
 <p>You&rsquo;ve now made your order! Wait a few days, and maybe watch your <a href="https://jlcpcb.com/order"><code>Order history</code> page</a> (log in, <code>Hi &lt;username&gt;</code> &gt; <code>Order history</code>).
 They will tell you what stage of production your PCB Prototype or SMT assembly is in.</p>
 <p>In the mean time, maybe go write a blog post explaining what you learned.</p>

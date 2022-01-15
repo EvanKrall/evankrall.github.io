@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Absurdle Hard-Mode High Score | Evan Krall</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Absurdle Hard-Mode High Score</span></h1>
+
+<h2 class="date">2022/01/15</h2>
+</div>
+
+<main>
+<p>I have managed to play what I believe to be the longest possible non-trivial game of <a href="https://qntm.org/files/wordle/index.html">Absurdle</a>.</p>
+<h1 id="what-is-absurdle-and-what-is-wordle">What is Absurdle (and what is Wordle)?</h1>
+<p><a href="https://www.powerlanguage.co.uk/wordle/">Wordle</a> is a game by Josh Wardle, in which you try to guess the secret five-letter word of the day.
+You have 6 guesses, and each time you make a guess, the game colors each of your letters either black ⬛️, yellow 🟨, or green 🟩.
+A green letter means that you got that letter in the right position - i.e. a green <code>a</code> in the third position means the secret word must have <code>a</code> as its third letter.
+A yellow letter means that letter exists in the word, but not in that position - i.e. a yellow <code>b</code> in the first position means the secret has a <code>b</code> in it somewhere, just not in the first position.</p>
+<p>Absurdle has nearly identical mechanics, except that the game will retroactively change the secret (or, actually, list of secrets) on each turn to make it as hard as possible for you:</p>
+<blockquote>
+<p>Wordle picks a single secret word at the beginning of the game, and then you have to guess it. Absurdle gives the impression of picking a single secret word, but instead what it actually does is consider the entire list of all possible secret words which conform to your guesses so far. Each time you guess, Absurdle prunes its internal list as little as possible, attempting to intentionally prolong the game as much as possible.</p>
+</blockquote>
+<p>(from qntm&rsquo;s <a href="https://qntm.org/wordle">description of Absurdle</a>.)</p>
+<p>Both Wordle and Absurdle use the same dictionaries: the secrets come from a list of 2315 common five-letter words (people would be mad if the secret word were <code>alaap</code>), but the player is allowed to guess words contained within a larger, 12972-word list.</p>
+<h1 id="why-search-for-the-longest-game">Why search for the longest game?</h1>
+<p>Isn&rsquo;t the point of Absurdle to get the shortest possible game?
+I guess that&rsquo;s sort of implied, but nowhere in the rules does it explicitly say that lower is better.
+Someone already has a <a href="https://twitter.com/zwegner/status/1480110927752175618">rough proof</a> that 4 turns is the shortest possible Absurdle game, and 4-turn games have already been found.
+Why <em>not</em> go the other direction?</p>
+<h1 id="defining-trivial">Defining trivial</h1>
+<p>I said that I&rsquo;ve found the longest possible <em>non-trivial</em> game of Absurdle.
+By &ldquo;non-trivial&rdquo;, I mean:</p>
+<ol>
+<li>each word played is unique</li>
+<li>each guess would be a valid guess under <a href="https://www.powerlanguage.co.uk/wordle/">Wordle</a>&rsquo;s hard mode.</li>
+</ol>
+<p>Without the first rule, it&rsquo;s easy to see that you could make an arbitrarily long Absurdle play: Absurdle doesn&rsquo;t prevent you from guessing the same word twice, so you can just repeat some guess as many times as you like.</p>
+<p>The second rule may be a little less obvious, but is still important to make this challenge interesting.
+Without the second rule, you could play an Absurdle game of length 12972 (the length of the dictionary) by following these steps:</p>
+<ol>
+<li>Play Absurdle like normal, until you have narrowed down the set of possible secrets to a single word.</li>
+<li>Guess every word in the dictionary that isn&rsquo;t that single word, and that you haven&rsquo;t guessed so far.</li>
+<li>Finally, guess the correct word.</li>
+</ol>
+<h2 id="hard-mode-rules">Hard mode rules</h2>
+<p>Absurdle doesn&rsquo;t actually have a hard mode, but since it&rsquo;s otherwise consistent with Wordle, I&rsquo;m assuming that if it <em>did</em> have a hard mode, it would work the same as Wordle.</p>
+<p>Under Wordle&rsquo;s hard mode, your guesses must:</p>
+<ul>
+<li>include each of the green letters you have discovered, in the position where you found them.</li>
+<li>include each of the yellow letters you have discovered somewhere in the word.</li>
+</ul>
+<p>If the secret contains multiple copies of a letter, it&rsquo;s possible to get multiple yellows or a green + yellow for the same letter.
+If your guess contains more copies of a letter than the secret has, the excess copies will be black (or white, if you use light mode.)
+For example, if the secret is <code>abbey</code> and you guess <code>babka</code>, your clue would be 🟨🟨🟩⬛️⬛️. This indicates that there are two <code>b</code>s, one in the third position, and the other one in the 2nd, 4th, or 5th position; it also indicates that there is only one <code>a</code>.</p>
+<p>If you were playing the example above in hard mode, any future guesses must include a <code>b</code> at the third position, an additional <code>b</code> somewhere else, and an <code>a</code> somewhere else.</p>
+<p>Hard mode does <em>not</em> enforce the following rules that you might expect:</p>
+<ul>
+<li>that you play yellow clues somewhere other than where you found them. e.g. in the <code>abbey</code>/<code>babka</code> example, we know that the secret does not start with <code>ba</code>, but Wordle will still let us guess <code>babes</code>.</li>
+<li>that your guesses do not contain the letters that you have eliminated with ⬛️. e.g. in the <code>abbey</code>/<code>babka</code> example, we could still guess <code>kebab</code> even though we know that the secret has no <code>k</code>.</li>
+</ul>
+<h1 id="finding-the-best-secret">Finding the best secret</h1>
+<p>With the insight that a long game is always going to start with a long string of ⬛️⬛️⬛️⬛️⬛️ clues, I initially planned to split my search in to two phases:</p>
+<ol>
+<li>Find sequences of guesses that narrow Absurdle&rsquo;s internal secret list to a single word with only ⬛️⬛️⬛️⬛️⬛️ clues.</li>
+<li>Once you have a secret, find the maximum length of play you can make for that secret.</li>
+</ol>
+<p>My code for finding sequences of ⬛️⬛️⬛️⬛️⬛️ that end up at each of the 2315 possible secrets was taking a long time, so I decided to start the other way around:
+Assuming that I can find an all-black path to each secret, calculate the maximum length of game for that secret.</p>
+<h2 id="first-order-heuristic-number-of-guesses-with-no-letters-in-common-with-each-secret">First-order heuristic: number of guesses with no letters in common with each secret</h2>
+<p>Since the first phase of the long play is going to be a bunch of ⬛️⬛️⬛️⬛️⬛️, I calculated how long this phase could be for each secret:</p>
+<pre><code>577 arose
+626 arise
+626 raise
+697 aisle
+749 yeast
+759 aside
+762 sepia
+789 saute
+823 saner
+823 snare
+...
+6899 fizzy
+6923 puffy
+6928 jiffy
+6975 chuck
+7344 vivid
+7409 fluff
+7571 mummy
+7571 puppy
+7598 civic
+7875 fuzzy
+</code></pre><p>This means if we force Absurdle to narrow down the list of secrets to <code>arose</code>, there are 577 words we can play that don&rsquo;t contain <code>a</code>, <code>r</code>, <code>o</code>, <code>s</code>, or <code>e</code>.
+If the secret is <code>fuzzy</code>, there are 7875 words that don&rsquo;t contain <code>f</code>, <code>u</code>, <code>z</code>, or <code>y</code>.</p>
+<h2 id="second-order-one-letter-in-common">Second-order: one letter in common</h2>
+<p>Once we&rsquo;ve played all our ⬛️⬛️⬛️⬛️⬛️, we aren&rsquo;t done.
+What if we chose a letter, and played all the words that have that letter in common with the secret?
+We could play all the words that would keep that letter yellow, then give up and turn that letter green.</p>
+<p>If our secret is <code>fuzzy</code>, maybe we choose <code>u</code> to turn yellow.
+We could then play all the words that have a <code>u</code> in the first, third, fourth, or fifth positions, but no other letters in common with <code>fuzzy</code>.
+Furthermore, once we&rsquo;ve done that, we could turn the <code>u</code> green, and play all the words that have <code>u</code> in the second position.</p>
+<p>Our second-order heuristic is then:</p>
+<ol>
+<li>count the number of ⬛️⬛️⬛️⬛️⬛️ words for each secret</li>
+<li>For each of the single letters (ignore any letters that are doubled for now, since that seems complicated to deal with), count the number of additional words that unlocks.</li>
+<li>Choose the best single letter from step 2, and add that count to the count from step 1.</li>
+</ol>
+<p>Here are the scores under the second-order heuristic:</p>
+<pre><code>1514 rose arose
+1586 aris arise
+1586 rais raise
+1857 aisl aisle
+1950 side aside
+1968 tare stare
+1995 aner saner
+1995 nare snare
+2099 spia sepia
+2132 last least
+...
+9333 mmmy mummy
+9389 pppy poppy
+9389 pppy puppy
+9518 whff whiff
+9649 bbby bobby
+9751 fuff fluff
+9785 fzzy fizzy
+9785 fzzy fuzzy
+9861 jffy jiffy
+10355 jzzy jazzy
+</code></pre><p>(The second column is the secret with the chosen letter dropped; my implementation effectively checks all the possible guesses against this shorter &ldquo;secret&rdquo;.)</p>
+<p>This changes the order of the secrets dramatically, bringing <code>jazzy</code> from 45th place with 5968 ⬛️⬛️⬛️⬛️⬛️s all the way to first place with 10355 words with ⬛️⬛️⬛️⬛️⬛️ or a yellow or green <code>a</code>.</p>
+<p>It also makes <code>fizzy</code> and <code>fuzzy</code> equivalent - <code>fizzy</code> has 6899 ⬛️⬛️⬛️⬛️⬛️ words, but then you can play 2886 words containing <code>i</code>. <code>fuzzy</code> has 7875 ⬛️⬛️⬛️⬛️⬛️ words, but then you can play 1910 words that contain a <code>u</code>.</p>
+<h2 id="nth-order-recursively-searching-for-the-best-play-per-secret">Nth-order: recursively searching for the best play per secret</h2>
+<p>How many words can we play if we recursively apply the strategy above?
+Once we&rsquo;ve picked a letter to turn yellow and then green, what&rsquo;s the best next letter?</p>
+<p>Furthermore, what if it&rsquo;s actually better to e.g. leave that letter yellow, turn another letter yellow, and get all the words that contain that pair of letters?
+This would be better if there are more words that contain that pair of letters (in places different than in the secret) than words that have the first letter in exactly the same spot.
+(This turns out to be true for <code>affix</code>: it&rsquo;s better to have yellow <code>a</code> and yellow <code>i</code> than a green <code>a</code>.)</p>
+<p>I wrote some code that recursively:</p>
+<ul>
+<li>groups all remaining guesses (guesses that haven&rsquo;t been ruled out by hard mode rules) by the hint they would give you.</li>
+<li>For each of those hints:
+<ul>
+<li>count the number of guesses that give you the same hint</li>
+<li>Recurse, and add the returned score to the count from the previous step</li>
+</ul>
+</li>
+<li>return the best score we saw among all the hints.</li>
+</ul>
+<p>With some additional bookkeeping, we can make this give us the best score as well as the path (sequence of hints) to reach that path.</p>
+<p>Under this metric, here are the worst and best secrets:</p>
+<pre><code>saner 2598 &lt;.....,&gt; &lt;.....,s&gt; &lt;.....,es&gt; &lt;...e.,s&gt; &lt;...e.,sa&gt; &lt;.a.e.,s&gt; &lt;.a.e.,rs&gt; &lt;.a.er,s&gt; &lt;sa.er,&gt; &lt;saner,&gt;
+stare 2615 &lt;.....,&gt; &lt;.....,s&gt; &lt;.....,es&gt; &lt;.....,ers&gt; &lt;s....,er&gt; &lt;s..r.,e&gt; &lt;s..re,&gt; &lt;s..re,a&gt; &lt;s.are,&gt; &lt;stare,&gt;
+arose 2669 &lt;.....,&gt; &lt;.....,a&gt; &lt;.....,sa&gt; &lt;.....,esa&gt; &lt;.....,ersa&gt; &lt;....e,rsa&gt; &lt;...se,ra&gt; &lt;.r.se,a&gt; &lt;ar.se,&gt; &lt;arose,&gt;
+snare 2669 &lt;.....,&gt; &lt;.....,s&gt; &lt;.....,es&gt; &lt;.....,ers&gt; &lt;s....,er&gt; &lt;s..r.,e&gt; &lt;s..re,&gt; &lt;s..re,a&gt; &lt;s.are,&gt; &lt;snare,&gt;
+slate 2696 &lt;.....,&gt; &lt;.....,e&gt; &lt;.....,es&gt; &lt;s....,e&gt; &lt;s...e,&gt; &lt;s...e,a&gt; &lt;s.a.e,&gt; &lt;s.a.e,t&gt; &lt;s.ate,&gt; &lt;slate,&gt;
+stale 2696 &lt;.....,&gt; &lt;.....,e&gt; &lt;.....,es&gt; &lt;s....,e&gt; &lt;s...e,&gt; &lt;s...e,a&gt; &lt;s.a.e,&gt; &lt;s.a.e,t&gt; &lt;sta.e,&gt; &lt;stale,&gt;
+raise 2703 &lt;.....,&gt; &lt;.....,s&gt; &lt;.....,es&gt; &lt;.....,esa&gt; &lt;.a...,es&gt; &lt;.a...,ers&gt; &lt;ra...,es&gt; &lt;ra.se,&gt; &lt;raise,&gt;
+arise 2741 &lt;.....,&gt; &lt;.....,s&gt; &lt;.....,sa&gt; &lt;.....,esa&gt; &lt;.....,ersa&gt; &lt;....e,rsa&gt; &lt;...se,ra&gt; &lt;.r.se,a&gt; &lt;ar.se,&gt; &lt;arise,&gt;
+aisle 2862 &lt;.....,&gt; &lt;.....,s&gt; &lt;.....,sa&gt; &lt;.....,esa&gt; &lt;....e,sa&gt; &lt;....e,lsa&gt; &lt;...le,sa&gt; &lt;..sle,a&gt; &lt;aisle,&gt;
+sepia 2897 &lt;.....,&gt; &lt;.....,a&gt; &lt;.....,sa&gt; &lt;.....,esa&gt; &lt;s....,ea&gt; &lt;se...,a&gt; &lt;se..a,&gt; &lt;se..a,i&gt; &lt;sepia,&gt;
+...
+whiff 9680 &lt;.....,&gt; &lt;.....,i&gt; &lt;..i..,&gt; &lt;..i..,h&gt; &lt;.hi..,&gt; &lt;whi..,&gt; &lt;whif.,&gt; &lt;whiff,&gt;
+poppy 9730 &lt;.....,&gt; &lt;.....,o&gt; &lt;.o...,&gt; &lt;.o...,y&gt; &lt;.o..y,&gt; &lt;po..y,&gt; &lt;po.py,&gt; &lt;poppy,&gt;
+civic 9853 &lt;.....,&gt; &lt;.....,i&gt; &lt;.i...,&gt; &lt;.i...,c&gt; &lt;ci...,&gt; &lt;civ..,&gt; &lt;civi.,&gt; &lt;civic,&gt;
+fluff 9872 &lt;.....,&gt; &lt;.....,l&gt; &lt;.l...,&gt; &lt;.l...,u&gt; &lt;.lu..,&gt; &lt;flu..,&gt; &lt;fluff,&gt;
+fizzy 9966 &lt;.....,&gt; &lt;.....,i&gt; &lt;.i...,&gt; &lt;.i...,y&gt; &lt;.i..y,&gt; &lt;.i..y,f&gt; &lt;fi..y,&gt; &lt;fizzy,&gt;
+bobby 9995 &lt;.....,&gt; &lt;.....,o&gt; &lt;.o...,&gt; &lt;.o...,y&gt; &lt;.o..y,&gt; &lt;bo..y,&gt; &lt;bo.by,&gt; &lt;bobby,&gt;
+fuzzy 10014 &lt;.....,&gt; &lt;.....,u&gt; &lt;.u...,&gt; &lt;.u...,y&gt; &lt;.u..y,&gt; &lt;.u..y,f&gt; &lt;fu..y,&gt; &lt;fu.zy,&gt; &lt;fuzzy,&gt;
+jiffy 10048 &lt;.....,&gt; &lt;.....,i&gt; &lt;.i...,&gt; &lt;.i...,y&gt; &lt;.i..y,&gt; &lt;.i..y,f&gt; &lt;.if.y,&gt; &lt;.if.y,f&gt; &lt;.iffy,&gt; &lt;jiffy,&gt;
+mamma 10554 &lt;.....,&gt; &lt;.....,a&gt; &lt;.a...,&gt; &lt;.a...,a&gt; &lt;.a..a,&gt; &lt;ma..a,&gt; &lt;mam.a,&gt; &lt;mamma,&gt;
+jazzy 10692 &lt;.....,&gt; &lt;.....,a&gt; &lt;.a...,&gt; &lt;.a...,y&gt; &lt;.a..y,&gt; &lt;ja..y,&gt; &lt;jazzy,&gt;
+</code></pre><p>(The notation here is: green letters before the comma, yellow letters after. e.g. <code>&lt;s...e,a&gt;</code> is a green <code>s</code> in position 1, green <code>e</code> in position 5, and a yellow <code>a</code> somewhere else.)</p>
+<p>This doesn&rsquo;t change the numbers too dramatically compared to the 2nd-order heuristic, though it does bring <code>mamma</code> up to 2nd place. My 2nd-order heuristic ignored <code>mamma</code> because it didn&rsquo;t handle double letters. It also makes <code>fizzy</code> and <code>fuzzy</code> no longer equivalent: once you&rsquo;ve played the <code>i</code> or <code>u</code>, the set of allowed guesses are different.</p>
+<p>Going back to our overall strategy, this should mean that if we can find a sequence of guesses that give us ⬛️⬛️⬛️⬛️⬛️ and narrow down the set of words to just <code>jazzy</code>, we can construct our maximally-long play.</p>
+<h1 id="finding-a-path-to-jazzy">Finding a path to <code>jazzy</code></h1>
+<p>To find our path to <code>jazzy</code>, we&rsquo;ll use recursion again.</p>
+<ul>
+<li>for all possible guesses:
+<ul>
+<li>if Absurdle would give us ⬛️⬛️⬛️⬛️⬛️ for that guess, and the guess contains at least one letter we haven&rsquo;t guessed so far:
+<ul>
+<li>figure out the set of secrets remaining once we play that guess</li>
+<li>if that set of secrets still contains <code>jazzy</code>:
+<ul>
+<li>recurse</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>I ran this for a few minutes, and it found <code>oiler</code>, <code>munts</code>, <code>coked</code>, <code>beech</code>.</p>
+<p>We can double-check that this sequence of guesses does force Absurdle to having <code>jazzy</code> as its only secret, with no green or yellow clues (except for <code>jazzy</code>).</p>
+<p><img src="/img/oiler_munts_coked_beech_jazzy.png" alt="Screenshot of Absurdle showing that oiler, munts, coked, beech will make Absurdle&rsquo;s secret jazzy, without requiring any green or yellow letters along the way."></p>
+<h1 id="constructing-our-longest-play">Constructing our longest play</h1>
+<p>Now, to construct our play, we need to start with <code>oiler</code>, <code>munts</code>, <code>coked</code>, <code>beech</code></p>
+<p>Then, for the optimal sequence of hints we found:
+<code>&lt;.....,&gt; &lt;.....,a&gt; &lt;.a...,&gt; &lt;.a...,y&gt; &lt;.a..y,&gt; &lt;ja..y,&gt; &lt;jazzy,&gt;</code></p>
+<p>we need to loop over these hints, and find all the guesses (that we haven&rsquo;t already guessed) that would give the same hint. This gives us a list of 10692 words, starting with <code>oiler</code> and ending with <code>jazzy</code>.</p>
+<h1 id="actually-playing-this-list">Actually playing this list</h1>
+<p>I constructed some <a href="/text/absurdle_highscore.js.txt">javascript</a> that can be pasted into the developer tools console on the Absurdle page. (Please don&rsquo;t judge my JS skills too harshly, it&rsquo;s been a long time since I wrote Javascript professionally.)
+This took several hours to run (I suspect Absurdle isn&rsquo;t optimized for long games like this) but ultimately succeeded:</p>
+<p><img src="/img/10692_guesses.png" alt="Screenshot of Absurdle showing the last few guesses of our 10692-guess game, ending with jazzy"></p>
+
+</main>
+
+  <footer>
+  
+  
+  </footer>
+  </body>
+</html>
+

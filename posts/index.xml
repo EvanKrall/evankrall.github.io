@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Evan Krall</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Oct 2020 19:20:28 -0700</lastBuildDate><atom:link href="https://www.evankrall.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Jan 2022 14:31:00 -0800</lastBuildDate><atom:link href="https://www.evankrall.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Absurdle Hard-Mode High Score</title>
+      <link>https://www.evankrall.com/posts/absurdle-highscore/</link>
+      <pubDate>Sat, 15 Jan 2022 14:31:00 -0800</pubDate>
+      
+      <guid>https://www.evankrall.com/posts/absurdle-highscore/</guid>
+      <description>I have managed to play what I believe to be the longest possible non-trivial game of Absurdle.
+What is Absurdle (and what is Wordle)? Wordle is a game by Josh Wardle, in which you try to guess the secret five-letter word of the day. You have 6 guesses, and each time you make a guess, the game colors each of your letters either black ⬛️, yellow 🟨, or green 🟩. A green letter means that you got that letter in the right position - i.</description>
+    </item>
+    
     <item>
       <title>Designing a PCB in EasyEDA and getting it assembled by JLCPCB</title>
       <link>https://www.evankrall.com/posts/jlcpcb-smt/</link>

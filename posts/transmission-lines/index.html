@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Why do EDA programs only draw half of the transmission line? | Evan Krall</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Why do EDA programs only draw half of the transmission line?</span></h1>
+
+<h2 class="date">2022/12/16</h2>
+</div>
+
+<main>
+<p><em><strong>tl;dr:</strong> For high-speed signals, EDA programs should provide a mode where you can simultaneously route a signal trace on one layer and a wider ground/power trace for the signal&rsquo;s return current on an adjacent inner layer, directly under the signal trace; essentially routing a whole microstrip transmission line.</em></p>
+<h1 id="whats-a-return-current-path">What&rsquo;s a return current path?</h1>
+<p>If you aren&rsquo;t familiar with designing high-speed digital circuits, you might think of digital signals as time-varying voltages, and not think much about current.
+After all, digital input pins are often high-impedance, meaning they draw negligible current.
+However, with higher frequency signals, capacitance in your circuit means that the transmitter needs to push or pull nonzero current into/out of the wire to get the voltage on the line to change, even if the receiver has a high-impedance input.
+Furthermore, to reduce the possibility of <a href="https://en.wikipedia.org/wiki/Reflections_of_signals_on_conducting_lines">signal reflections</a> that distort the incoming signal, high-speed receivers will typically have somewhat low input impedance of e.g. 50 to 200 ohms, which means that for a 3.3V signal, your receiver might be drawing a few dozen milliamps.</p>
+<p>All this current <strong>must return to the transmitter somehow</strong>, as all current must flow in a loop.
+This loop will typically consist of:</p>
+<ul>
+<li>The power supply and/or decoupling capacitors near your transmitter</li>
+<li>The the transistors in the transmitter&rsquo;s output stage</li>
+<li>The signal trace from transmitter to receiver</li>
+<li>The receiver&rsquo;s input stage, which may include a resistor to ground or a reference voltage</li>
+<li>The receiver&rsquo;s reference voltage source</li>
+<li>The ground conductors between transmitter and receiver</li>
+</ul>
+<figure>
+    <img src="/img/transmission-lines/signal_flow.png"
+         alt="Simplified schematic diagram for a digital transmitter and receiver, showing the current flow for a rising edge. In this model, I&amp;rsquo;m assuming that the VCC connection between transmitter and receiver has higher inductance than the ground connection. Additionally, I&amp;rsquo;m assuming that the power supply has higher inductance than the decoupling capacitor for the transmitter."/> <figcaption>
+            <p>Simplified schematic diagram for a digital transmitter and receiver, showing the current flow for a rising edge. In this model, I&rsquo;m assuming that the V<sub>CC</sub> connection between transmitter and receiver has higher inductance than the ground connection. Additionally, I&rsquo;m assuming that the power supply has higher inductance than the decoupling capacitor for the transmitter.</p>
+        </figcaption>
+</figure>
+
+<p>You may be familiar with the maxim that current follows the path of least resistance.
+(In reality, it follows all parallel paths, with current inversely proportional to resistance.)
+To be more accurate, we have to say that current follows the path(s) of least <a href="https://en.wikipedia.org/wiki/Electrical_impedance">impedance</a>, which generalizes the concept of resistance to describe how current flows in circuits with capacitance and inductance.
+Any wire or PCB trace has nonzero inductance, which affects impedance more and more as frequency increases, causing inductance to have much stronger effects than resistance at high frequencies.</p>
+<p>Since the inductance of a loop of wire decreases as you decrease the area traced by the loop, high-frequency signals will tend to follow a path that has the least cross-sectional area possible;
+that is, the return current &ldquo;wants&rdquo; to travel in a path that&rsquo;s as close as possible to the outgoing current.
+(It also wants to spread out a bit, as a wider conductor has lower inductance than a narrower conductor.)
+If your circuit board has a <a href="https://en.wikipedia.org/wiki/Ground_plane#Printed_circuit_boards">ground plane</a> below your signal trace, the return current will tend to follow a path directly underneath the signal trace, but spread out slightly.</p>
+<figure>
+    <img src="/img/transmission-lines/current_path_on_ground_plane.png"
+         alt="The faint lines show the approximate path of the return current through a ground plane beneath a signal trace."/> <figcaption>
+            <p>The faint lines show the approximate path of the return current through a ground plane beneath a signal trace.</p>
+        </figcaption>
+</figure>
+
+<p>If you don&rsquo;t have a ground or power plane, and instead use traces to connect ground/power between your different ICs, then the return current for your signal will tend to travel in the ground traces nearest to the signal trace.
+This tends to lead to higher inductance and a less consistent impedance as the signal propagates through the trace.
+Impedance changes can cause your signal to be reflected, distorting the signal that your receiver sees.
+The increased loop area traced out by your signal/return path will lead to <a href="https://en.wikipedia.org/wiki/Electromagnetic_interference">Electromagnetic interference (EMI)</a> and <a href="https://en.wikipedia.org/wiki/Crosstalk">cross-talk</a> between nearby signals.</p>
+<p>Thus, the best practices for routing high-speed signals on a PCB include:</p>
+<ul>
+<li>Have a ground plane on a PCB layer adjacent to the signal trace</li>
+<li>Don&rsquo;t route signal traces over breaks in the ground plane</li>
+<li>Connect your transmitter and receiver ICs to the ground plane with low-impedance (short and wide) connections</li>
+<li>If you need to move a signal to a different layer by using <a href="https://en.wikipedia.org/wiki/Via_%28electronics%29">vias</a>, you should also include a way (more vias) for the return current to move to the ground plane closest to that other layer.</li>
+</ul>
+<p>(Power planes may also provide a good return path, in certain circumstances, but it seems like experts recommend trying to use ground planes if possible.<!-- insert link to Rick Hartley video here -->)</p>
+<p>This combination of signal trace + ground plane forms a <a href="https://en.wikipedia.org/wiki/Microstrip">microstrip</a> transmission line.</p>
+<figure>
+    <img src="/img/transmission-lines/Microstrip_geometry.svg"
+         alt="Cross-section of a microstrip transmission line. The area marked A is the signal trace, and D is the ground plane." width="100%"/> <figcaption>
+            <p>Cross-section of a microstrip transmission line. The area marked <code>A</code> is the signal trace, and <code>D</code> is the ground plane.</p>
+        </figcaption>
+</figure>
+
+<h1 id="the-current-workflow">The current workflow</h1>
+<p>EDA software such as <a href="https://KiCad.org">KiCad</a> lets you build transmission lines for your high-speed signals out of primitive components (traces, vias, and filled zones). Superficially, it&rsquo;s pretty straightforward to construct a transmission line manually:</p>
+<ul>
+<li>create a ground (or power) plane by drawing a filled zone on the first inner layer</li>
+<li>make sure both the receiver and transmitter are connected to that plane with short+wide traces</li>
+<li>draw your signal trace on the top layer</li>
+</ul>
+<p>(I&rsquo;m assuming a 4-layer board in these examples, with inner layers used for planes, and outer layers used for traces.)</p>
+<p>However, the devil is in the details:</p>
+<h2 id="holes-in-the-plane">Holes in the plane</h2>
+<p>What if power/ground plane has a hole or slot in it for some reason?
+For example, if your design has a <a href="https://resources.pcb.cadence.com/blog/2021-should-you-ever-separate-analog-and-digital-ground-planes">split ground plane</a> (seems like most experts recommend against this these days), multiple filled zones handling different power supply voltages, or you&rsquo;ve routed a trace on that inner layer.
+Maybe you have a via for another trace nearby &ndash; the clearance rules for the filled zone will create a hole in the zone centered on the via.
+Even worse, if you have vias on either side of your trace, and the clearance circles for the two vias overlap underneath your trace.</p>
+<p><figure>
+    <img src="/img/transmission-lines/close_vias_ground_plane.png"
+         alt="Example showing two nearby vias creating a slot in the ground plane, and a single via creating a hole. Return current for the signal will have to divert around these obstructions."/> <figcaption>
+            <p>Example showing two nearby vias creating a slot in the ground plane, and a single via creating a hole. Return current for the signal will have to divert around these obstructions.</p>
+        </figcaption>
+</figure>
+
+It&rsquo;s simpler if you can constrain yourself to routing the signal trace on top of an unbroken ground plane, but if that&rsquo;s not possible, you can provide a path for your return current with stitching capacitors: connect the two filled zones (or sides of the split) with a capacitor.</p>
+<h2 id="switching-sides">Switching sides</h2>
+<p>If you need to send your signal to the other side of the board, you can use a via.
+However, you also need to provide a path for the return current to move between your two inner layers.
+If you&rsquo;ve got a ground plane on both inner layers, you just need another via, placed near the signal via.</p>
+<figure>
+    <img src="/img/transmission-lines/ground_via.png"
+         alt="A nearby via connecting the two inner-layer ground planes together allows the return current to travel to the other ground plane as the signal switches sides of the board."/> <figcaption>
+            <p>A nearby via connecting the two inner-layer ground planes together allows the return current to travel to the other ground plane as the signal switches sides of the board.</p>
+        </figcaption>
+</figure>
+
+<p>If your filled zones on the two layers are different nets (e.g. power on one layer, ground on the other), then you&rsquo;ll need to add a stitching capacitor.</p>
+<figure>
+    <img src="/img/transmission-lines/stitching_capacitor_power_plane.png"
+         alt="With the two inner layers not directly connected, the return current will need to travel through a capacitor."/> <figcaption>
+            <p>With the two inner layers not directly connected, the return current will need to travel through a capacitor.</p>
+        </figcaption>
+</figure>
+
+<h1 id="how-eda-tools-could-do-better">How EDA tools could do better</h1>
+<p>I think KiCad and other EDA tools could make our lives easier by adding functionality for directly creating transmission lines by routing two traces simultaneously: one for the signal, one for the return current.
+This would work similarly to how differential pair routing works, except instead of drawing two traces side-by-side, it would draw the two traces on adjacent layers, with one larger than the other.</p>
+<p>The trace for the return current should be wide enough that it acts like a ground plane.
+<a href="https://www.altium.com/documentation/altium-designer/pcb-layout-high-speed-design">Altium&rsquo;s documentation</a> says:</p>
+<blockquote>
+<p>The width of the return path is ideally 3x the width of the signal routing, or 3x the distance from the route to the plane, whichever is smaller. While the greatest current density is directly below the signal route, it also spreads out into the plane on either side of the route with approximately 95% flowing within 3x the route width.</p>
+</blockquote>
+<p>Here&rsquo;s what this would look like:</p>
+<figure>
+    <img src="/img/transmission-lines/kicad_transline_routing.gif"
+         alt="Demo of what transmission line routing could look like, with a ground trace (green) automatically routed underneath the signal trace (red)."/> <figcaption>
+            <p>Demo of what transmission line routing could look like, with a ground trace (green) automatically routed underneath the signal trace (red).</p>
+        </figcaption>
+</figure>
+
+<p>In most cases, you&rsquo;d probably still want a ground plane, so this extra trace might seem redundant.
+(And that&rsquo;s true - if you have a ground plane, the current return trace will likely not change the copper at all, since the ground plane would cover the same area.)</p>
+<p>The return trace essentially acts as a way of getting the <a href="https://en.wikipedia.org/wiki/Design_rule_checking">DRC</a> engine to enforce best practices for your current return path.
+While routing, DRC would consider obstructions on both layers, and prevent you from routing your transmission line too close to holes/vias, traces belonging to other nets, etc.
+After you&rsquo;ve routed your high-speed signals, the return trace would essentially act as a keep-out zone within the plane, preventing traces and vias for other nets from intruding into this sensitive area.</p>
+<p>This functionality could also make constructing your return path faster: if you add a via to move your signal trace to the other side of the board, it could automatically create a via for the return path as well.
+The software could find the best placement for the ground via given the obstructions nearby (e.g. placing the ground via on the left or right side of the trace, forward or behind the signal via.)
+It could also omit the ground via if there&rsquo;s already one sufficiently close by.</p>
+<figure>
+    <img src="/img/transmission-lines/auto_ground_vias.png"
+         alt="Example of how it might automatically place a ground via next to a signal via."/> <figcaption>
+            <p>Example of how it might automatically place a ground via next to a signal via.</p>
+        </figcaption>
+</figure>
+
+<p>If you draw all your transmission lines before adding ground planes, the ratsnest lines can help remind you where you need to connect the IC ground/power pins to the current return path, helping you avoid accidentally creating a large loop.</p>
+<figure>
+    <img src="/img/transmission-lines/ratsnest.png"
+         alt="Ratsnest lines (faint white line) between IC ground pins and the current return path, showing you the connection that needs to be made."/> <figcaption>
+            <p>Ratsnest lines (faint white line) between IC ground pins and the current return path, showing you the connection that needs to be made.</p>
+        </figcaption>
+</figure>
+
+<h2 id="differential-pairs">Differential pairs</h2>
+<p>Of course, the same idea can be applied to differential pairs as well (since they&rsquo;re typically controlled-impedance transmission lines).
+The current return path would be one wide trace underneath both of the signal traces (or two overlapping traces, one underneath each of the signal traces; this might handle corners slightly better.)
+So instead of routing 2 traces simultaneously, we&rsquo;d route 3-4 traces.
+Any time you add vias, it would add 3 or 4 vias (two for the signal traces, 1-2 for the return current).</p>
+<figure>
+    <img src="/img/transmission-lines/ground_vias_diff_pair.png"
+         alt="Example showing how it might place ground vias for differential pairs."/> <figcaption>
+            <p>Example showing how it might place ground vias for differential pairs.</p>
+        </figcaption>
+</figure>
+
+<h1 id="further-improvements">Further improvements</h1>
+<p>With more features, this functionality could be more flexible:</p>
+<h2 id="automatic-stitching-capacitors">Automatic stitching capacitors</h2>
+<p>Perhaps the tool could detect which net the inner layer zone is connected to, and automatically create stitching capacitors when you cross splits or switch sides:</p>
+<p><figure>
+    <img src="/img/transmission-lines/multi_zone_stitching.png"
+         alt="Example showing a stitching capacitor automatically added when crossing a zone split."/> <figcaption>
+            <p>Example showing a stitching capacitor automatically added when crossing a zone split.</p>
+        </figcaption>
+</figure>
+
+<figure>
+    <img src="/img/transmission-lines/two_side_stitching.png"
+         alt="Example showing a stitching capacitor automatically added when changing sides with two planes connected to different nets."/> <figcaption>
+            <p>Example showing a stitching capacitor automatically added when changing sides with two planes connected to different nets.</p>
+        </figcaption>
+</figure>
+</p>
+<h2 id="other-transmission-line-topologies">Other transmission line topologies</h2>
+<p>Of course, microstrip isn&rsquo;t the only transmission line topology possible on a PCB.
+This idea could be extended to <a href="https://en.wikipedia.org/wiki/Stripline">stripline</a>, <a href="https://en.wikipedia.org/wiki/Coplanar_waveguide">coplanar waveguides</a>, or <a href="https://resources.pcb.cadence.com/blog/2022-types-of-transmission-lines-in-high-speed-pcb-layout">other types of transmission lines</a>.</p>
+<h2 id="smarter-ratsnest">Smarter ratsnest</h2>
+<p>Currently, KiCad&rsquo;s strategy for ratsnest lines (the thin white lines that indicate disconnected areas belonging to the same net) is to draw a line to the nearest pad or corner of a zone or trace belonging to that net.
+If KiCad is aware that the wide inner-layer trace is meant to be a current return path, it could be smarter about where to draw this line to.
+Instead of picking any random <code>GND</code> (or whichever net it belongs to) copper nearby, it should:</p>
+<ul>
+<li>Find where the end of the signal trace needs to go</li>
+<li>Find the pin that:
+<ul>
+<li>belongs to the same component as the signal destination pin</li>
+<li>belongs to the correct net (e.g. <code>GND</code>)</li>
+<li>is closest to the destination pin.</li>
+</ul>
+</li>
+</ul>
+<p>Then it should draw the ratsnest line from the end of the current return trace to the pin it found.</p>
+<h2 id="automatic-return-current-vias">Automatic return current vias</h2>
+<p>Once we have the ability to automatically choose which pin the return path should connect to, why not go a step further and automatically connect it?</p>
+<p>Similar to how the differential pair routing mode automatically makes a connection to both the <code>+</code> and <code>-</code> pads on each end, we could automatically create a trace and via from the ground or power pin nearest the signal pin. In a lot of the previous examples, I&rsquo;ve left the inner-layer trace unconnected at each ends, but it should be possible to do some basic automatic routing for these connections.</p>
+<h2 id="being-explicit-about-current-return-nets">Being explicit about current return nets</h2>
+<p>It might make sense to have the user be explicit about which net they want to use for the current return path.
+I can imagine a few ways to accomplish that:</p>
+<ul>
+<li>A label naming convention / suffix, analogous to how differential pairs currently work in KiCad. Something like <code>&lt;signal name&gt;_RET</code> or <code>&lt;signal&gt;_RETURN</code> perhaps. This would lead to your <code>GND</code> and various power nets having a bunch of extra labels attached.</li>
+<li>A new type of connection in the schematic editor representing a transmission line; this would encapsulate two (or three for diff pairs) nets.</li>
+</ul>
+<figure>
+    <img src="/img/transmission-lines/eeschema_transline_mockup.png"
+         alt="Mockup of what a transmission line could look like in the schematic editor. In this example, ground is used as the return current net."/> <figcaption>
+            <p>Mockup of what a transmission line could look like in the schematic editor. In this example, ground is used as the return current net.</p>
+        </figcaption>
+</figure>
+
+<p>The latter might be harder to implement but would be more flexible.
+For example, it would allow the user to explicitly model stitching capacitors:</p>
+<figure>
+    <img src="/img/transmission-lines/eeschema_transline_mockup_caps.png"
+         alt="Schematic editor transmission line mockup with capacitors to allow for signal to flow between two different power nets."/> <figcaption>
+            <p>Schematic editor transmission line mockup with capacitors to allow for signal to flow between two different power nets.</p>
+        </figcaption>
+</figure>
+
+<h1 id="what-do-you-think">What do you think?</h1>
+<p>Please let me know what you think of this idea.
+Would you find it helpful?
+Do you have suggestions on how to make it better?</p>
+<p><code>TODO: feedback channels</code></p>
+
+</main>
+
+  <footer>
+  
+  
+  </footer>
+  </body>
+</html>
+

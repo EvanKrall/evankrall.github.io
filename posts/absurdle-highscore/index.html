@@ -82,7 +82,7 @@ For example, if the secret is <code>abbey</code> and you guess <code>babka</code
 Assuming that I can find an all-black path to each secret, calculate the maximum length of game for that secret.</p>
 <h2 id="first-order-heuristic-number-of-guesses-with-no-letters-in-common-with-each-secret">First-order heuristic: number of guesses with no letters in common with each secret</h2>
 <p>Since the first phase of the long play is going to be a bunch of ⬛️⬛️⬛️⬛️⬛️, I calculated how long this phase could be for each secret:</p>
-<pre><code>577 arose
+<pre tabindex="0"><code>577 arose
 626 arise
 626 raise
 697 aisle
@@ -119,7 +119,7 @@ Furthermore, once we&rsquo;ve done that, we could turn the <code>u</code> green,
 <li>Choose the best single letter from step 2, and add that count to the count from step 1.</li>
 </ol>
 <p>Here are the scores under the second-order heuristic:</p>
-<pre><code>1514 rose arose
+<pre tabindex="0"><code>1514 rose arose
 1586 aris arise
 1586 rais raise
 1857 aisl aisle
@@ -162,7 +162,7 @@ This would be better if there are more words that contain that pair of letters (
 </ul>
 <p>With some additional bookkeeping, we can make this give us the best score as well as the path (sequence of hints) to reach that path.</p>
 <p>Under this metric, here are the worst and best secrets:</p>
-<pre><code>saner 2598 &lt;.....,&gt; &lt;.....,s&gt; &lt;.....,es&gt; &lt;...e.,s&gt; &lt;...e.,sa&gt; &lt;.a.e.,s&gt; &lt;.a.e.,rs&gt; &lt;.a.er,s&gt; &lt;sa.er,&gt; &lt;saner,&gt;
+<pre tabindex="0"><code>saner 2598 &lt;.....,&gt; &lt;.....,s&gt; &lt;.....,es&gt; &lt;...e.,s&gt; &lt;...e.,sa&gt; &lt;.a.e.,s&gt; &lt;.a.e.,rs&gt; &lt;.a.er,s&gt; &lt;sa.er,&gt; &lt;saner,&gt;
 stare 2615 &lt;.....,&gt; &lt;.....,s&gt; &lt;.....,es&gt; &lt;.....,ers&gt; &lt;s....,er&gt; &lt;s..r.,e&gt; &lt;s..re,&gt; &lt;s..re,a&gt; &lt;s.are,&gt; &lt;stare,&gt;
 arose 2669 &lt;.....,&gt; &lt;.....,a&gt; &lt;.....,sa&gt; &lt;.....,esa&gt; &lt;.....,ersa&gt; &lt;....e,rsa&gt; &lt;...se,ra&gt; &lt;.r.se,a&gt; &lt;ar.se,&gt; &lt;arose,&gt;
 snare 2669 &lt;.....,&gt; &lt;.....,s&gt; &lt;.....,es&gt; &lt;.....,ers&gt; &lt;s....,er&gt; &lt;s..r.,e&gt; &lt;s..re,&gt; &lt;s..re,a&gt; &lt;s.are,&gt; &lt;snare,&gt;

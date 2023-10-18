@@ -1,34 +1,96 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://www.evankrall.com/</loc>
-    <lastmod>2022-01-15T14:31:00-08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
+    <lastmod>2023-10-04T07:15:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/223863-nvme-hdq-sdio-and-curvy-pcb-traces/</loc>
+    <lastmod>2023-10-04T07:15:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/</loc>
+    <lastmod>2023-10-04T07:15:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/215439-debugging-the-power-button/</loc>
+    <lastmod>2023-01-23T00:27:00-08:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/212604-attempting-to-tune-the-touchscreen-controller/</loc>
+    <lastmod>2022-10-21T11:15:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/212428-trying-my-hand-at-driver-development/</loc>
+    <lastmod>2022-10-18T07:19:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/212330-backlight-flickering-investigation-device-tree-overlay-for-the-battery-charger/</loc>
+    <lastmod>2022-10-16T07:37:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/212280-starting-to-look-like-a-tablet/</loc>
+    <lastmod>2022-10-15T07:10:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/211856-the-lcd-works/</loc>
+    <lastmod>2022-10-07T07:41:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/208195-some-progress-on-the-lcd/</loc>
+    <lastmod>2022-07-04T06:24:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/208187-getting-the-gt9110-touchscreen-controller-working/</loc>
+    <lastmod>2022-07-04T02:49:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/207999-real-time-clock-its-nice-when-something-is-easy/</loc>
+    <lastmod>2022-06-29T07:18:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/207834-figuring-out-why-the-cm4-wouldnt-boot-when-attached-to-my-board/</loc>
+    <lastmod>2022-06-26T08:27:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/207483-cm4-carrier-board-chip-shortage-pain-bodges-silly-mistakes-and-tragedy/</loc>
+    <lastmod>2022-06-14T07:56:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/202654-rpi-cm4-and-radxa-cm3-versions-of-the-board/</loc>
+    <lastmod>2022-01-26T07:53:00-08:00</lastmod>
+  </url><url>
     <loc>https://www.evankrall.com/posts/absurdle-highscore/</loc>
     <lastmod>2022-01-15T14:31:00-08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.evankrall.com/posts/</loc>
-    <lastmod>2022-01-15T14:31:00-08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/196964-colors-sn65dsi83-test-pattern/</loc>
+    <lastmod>2021-08-23T06:26:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/196672-using-ftrace-to-debug-device-tree-problems/</loc>
+    <lastmod>2021-08-18T07:28:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/195169-first-light-testing-and-fixing-the-backlight-controller/</loc>
+    <lastmod>2021-07-10T05:07:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/195091-power-supply-testing-part-2/</loc>
+    <lastmod>2021-07-08T06:05:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/195031-power-supply-testing/</loc>
+    <lastmod>2021-07-06T06:31:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/190683-attempting-to-write-a-device-tree-overlay-for-the-soundcard/</loc>
+    <lastmod>2021-03-22T03:54:00-07:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/190208-finally-things-to-solder/</loc>
+    <lastmod>2021-03-09T08:01:00-08:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/189947-video-output-research/</loc>
+    <lastmod>2021-03-02T07:14:00-08:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/189710-a-more-reasonable-touchscreen-controller-ic/</loc>
+    <lastmod>2021-02-25T08:06:00-08:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/189638-first-prototype-of-soundcard-some-breakout-boards-30-pin-connector-decision/</loc>
+    <lastmod>2021-02-23T08:06:00-08:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/189260-the-beginnings-of-the-soundcard/</loc>
+    <lastmod>2021-02-12T22:21:00-08:00</lastmod>
+  </url><url>
+    <loc>https://www.evankrall.com/posts/pipad/logs/188901-the-big-scary-touchscreen-connectors/</loc>
+    <lastmod>2021-02-03T07:59:00-08:00</lastmod>
+  </url><url>
     <loc>https://www.evankrall.com/posts/jlcpcb-smt/</loc>
     <lastmod>2020-10-12T19:20:28-07:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.evankrall.com/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.evankrall.com/tags/</loc>
   </url>
-  
 </urlset>

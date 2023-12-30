@@ -6,7 +6,20 @@
     <description>Recent content on Evan Krall</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Oct 2023 07:15:00 -0700</lastBuildDate><atom:link href="https://www.evankrall.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Dec 2023 21:08:18 -0800</lastBuildDate><atom:link href="https://www.evankrall.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pipad: It&#39;s a tablet! (Rev2 PCB testing)</title>
+      <link>https://www.evankrall.com/posts/pipad/logs/226319-its-a-tablet-rev2-pcb-testing/</link>
+      <pubDate>Fri, 29 Dec 2023 21:08:18 -0800</pubDate>
+      
+      <guid>https://www.evankrall.com/posts/pipad/logs/226319-its-a-tablet-rev2-pcb-testing/</guid>
+      <description>View or comment on this project log on Hackaday.io
+It works!
+I ordered the second revision of my PCB a few months back, and have been slowly working my way through testing and debugging the functionality. So far, the PCB hasn&#39;t required any modifications -- all the issues I&#39;ve encountered have been soldering or software issues.
+A brief list of things I tested / debugged:
+PCIe port (for the NVMe drive) worked without issue.</description>
+    </item>
+    
     <item>
       <title>Pipad: NVMe, HDQ, SDIO, and curvy PCB traces</title>
       <link>https://www.evankrall.com/posts/pipad/logs/223863-nvme-hdq-sdio-and-curvy-pcb-traces/</link>

@@ -6,313 +6,210 @@
     <description>Recent content in Posts on Evan Krall</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Dec 2023 21:08:18 -0800</lastBuildDate><atom:link href="https://www.evankrall.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Jan 2024 08:23:00 -0800</lastBuildDate>
+    <atom:link href="https://www.evankrall.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pipad: Audio codec: ground-centered mode, BCLK, headset detection</title>
+      <link>https://www.evankrall.com/posts/pipad/logs/227039-audio-codec-ground-centered-mode-bclk-headset-detection/</link>
+      <pubDate>Sun, 21 Jan 2024 08:23:00 -0800</pubDate>
+      <guid>https://www.evankrall.com/posts/pipad/logs/227039-audio-codec-ground-centered-mode-bclk-headset-detection/</guid>
+      <description>View or comment on this project log on Hackaday.io&#xA;I haven&#39;t worked on the audio codec part of my board in a while (I don&#39;t think I ever tested it on rev1), but it&#39;s the last major section of my rev2 PCB that needs testing. A codec is a coder/decoder -- something that encodes and decodes a digital signal --- in this case, to/from analog, so it&#39;s an ADC and DAC.</description>
+    </item>
     <item>
       <title>Pipad: It&#39;s a tablet! (Rev2 PCB testing)</title>
       <link>https://www.evankrall.com/posts/pipad/logs/226319-its-a-tablet-rev2-pcb-testing/</link>
       <pubDate>Fri, 29 Dec 2023 21:08:18 -0800</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/226319-its-a-tablet-rev2-pcb-testing/</guid>
-      <description>View or comment on this project log on Hackaday.io
-It works!
-I ordered the second revision of my PCB a few months back, and have been slowly working my way through testing and debugging the functionality. So far, the PCB hasn&#39;t required any modifications -- all the issues I&#39;ve encountered have been soldering or software issues.
-A brief list of things I tested / debugged:
-PCIe port (for the NVMe drive) worked without issue.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;It works!&#xA;I ordered the second revision of my PCB a few months back, and have been slowly working my way through testing and debugging the functionality. So far, the PCB hasn&#39;t required any modifications -- all the issues I&#39;ve encountered have been soldering or software issues.&#xA;A brief list of things I tested / debugged:&#xA;PCIe port (for the NVMe drive) worked without issue.</description>
     </item>
-    
     <item>
       <title>Pipad: NVMe, HDQ, SDIO, and curvy PCB traces</title>
       <link>https://www.evankrall.com/posts/pipad/logs/223863-nvme-hdq-sdio-and-curvy-pcb-traces/</link>
       <pubDate>Wed, 04 Oct 2023 07:15:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/223863-nvme-hdq-sdio-and-curvy-pcb-traces/</guid>
-      <description>View or comment on this project log on Hackaday.io
-I apologize for the long delay since the last update. I&#39;m still here, making spurts of progress here and there.
-Since the last log, I&#39;ve worked on a number of things:
-Figuring out why NVMe / PCIe wasn&#39;t workingSuccessfully getting the Pi to talk to the battery pack through TI&#39;s HDQ protocol.Unsuccessfully attempting to get the Pi to talk to the iPad&#39;s Wifi chip through SDIO.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;I apologize for the long delay since the last update. I&#39;m still here, making spurts of progress here and there.&#xA;Since the last log, I&#39;ve worked on a number of things:&#xA;Figuring out why NVMe / PCIe wasn&#39;t workingSuccessfully getting the Pi to talk to the battery pack through TI&#39;s HDQ protocol.Unsuccessfully attempting to get the Pi to talk to the iPad&#39;s Wifi chip through SDIO.</description>
     </item>
-    
     <item>
       <title>Pipad: Debugging the power button</title>
       <link>https://www.evankrall.com/posts/pipad/logs/215439-debugging-the-power-button/</link>
       <pubDate>Mon, 23 Jan 2023 00:27:00 -0800</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/215439-debugging-the-power-button/</guid>
-      <description>View or comment on this project log on Hackaday.io
-Hey, I&#39;m back with a simple one today. Between the holidays and general life stuff, I haven&#39;t found time to work on this project for a while. Motivation on hobby projects seems to ebb and flow. Hopefully it&#39;s starting to flow again.
-I saw a post on the Facebook group &#34;Raspberry Pi and DIY Projects&#34; where someone was using the MAX16150 IC to handle power on/off for their Pi, and it inspired me to try and get my MAX16150-based circuit working.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;Hey, I&#39;m back with a simple one today. Between the holidays and general life stuff, I haven&#39;t found time to work on this project for a while. Motivation on hobby projects seems to ebb and flow. Hopefully it&#39;s starting to flow again.&#xA;I saw a post on the Facebook group &#34;Raspberry Pi and DIY Projects&#34; where someone was using the MAX16150 IC to handle power on/off for their Pi, and it inspired me to try and get my MAX16150-based circuit working.</description>
     </item>
-    
     <item>
       <title>Pipad: Attempting to tune the touchscreen controller</title>
       <link>https://www.evankrall.com/posts/pipad/logs/212604-attempting-to-tune-the-touchscreen-controller/</link>
       <pubDate>Fri, 21 Oct 2022 11:15:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/212604-attempting-to-tune-the-touchscreen-controller/</guid>
-      <description>View or comment on this project log on Hackaday.io
-For reasons documented in a previous log entry, I am using the GT9110 touchscreen controller from Goodix.(Essentially, this is the only suitable touchscreen controller I could find in a footprint that I could actually use without spending hundreds of dollars per PCB revision.) In a later log entry, I got the GT9110 and Linux talking to each other.
-Goodix is quite a frustrating company to buy from as a hobbyist.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;For reasons documented in a previous log entry, I am using the GT9110 touchscreen controller from Goodix.&#xD;(Essentially, this is the only suitable touchscreen controller I could find in a footprint that I could actually use without spending hundreds of dollars per PCB revision.) In a later log entry, I got the GT9110 and Linux talking to each other.&#xA;Goodix is quite a frustrating company to buy from as a hobbyist.</description>
     </item>
-    
     <item>
       <title>Pipad: Trying my hand at driver development</title>
       <link>https://www.evankrall.com/posts/pipad/logs/212428-trying-my-hand-at-driver-development/</link>
       <pubDate>Tue, 18 Oct 2022 07:19:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/212428-trying-my-hand-at-driver-development/</guid>
-      <description>View or comment on this project log on Hackaday.io
-One issue which contributes to the backlight flicker is the undervoltage protection (UVLO) feature of the TPS61177A. This is configurable over i2c, but defaults to 3.5V, which is pretty high.
-In order to set this at startup, I decided to try and write a kernel driver for the TPS61177A. I partly followed https://docs.kernel.org/i2c/writing-clients.html and partly cargo-culted some stuff (mostly related to regmap) from the sn65dsi83 driver.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;One issue which contributes to the backlight flicker is the undervoltage protection (UVLO) feature of the TPS61177A. This is configurable over i2c, but defaults to 3.5V, which is pretty high.&#xA;In order to set this at startup, I decided to try and write a kernel driver for the TPS61177A. I partly followed https://docs.kernel.org/i2c/writing-clients.html and partly cargo-culted some stuff (mostly related to regmap) from the sn65dsi83 driver.</description>
     </item>
-    
     <item>
       <title>Pipad: Backlight flickering investigation &#43; device tree overlay for the battery charger.</title>
       <link>https://www.evankrall.com/posts/pipad/logs/212330-backlight-flickering-investigation-device-tree-overlay-for-the-battery-charger/</link>
       <pubDate>Sun, 16 Oct 2022 07:37:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/212330-backlight-flickering-investigation-device-tree-overlay-for-the-battery-charger/</guid>
-      <description>View or comment on this project log on Hackaday.io
-I&#39;ve been investigating the backlight flickering that I showed in my previous log entry. My main hypothesis was that the long wires between my breakout board and my main PCB were adding too much inductance, causing increased ripple. I had moved an input decoupling capacitor to the breakout board, which helped some but didn&#39;t entirely solve the problem. Adding more capacitance on the input side didn&#39;t help much more.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;I&#39;ve been investigating the backlight flickering that I showed in my previous log entry. My main hypothesis was that the long wires between my breakout board and my main PCB were adding too much inductance, causing increased ripple. I had moved an input decoupling capacitor to the breakout board, which helped some but didn&#39;t entirely solve the problem. Adding more capacitance on the input side didn&#39;t help much more.</description>
     </item>
-    
     <item>
       <title>Pipad: Starting to look like a tablet</title>
       <link>https://www.evankrall.com/posts/pipad/logs/212280-starting-to-look-like-a-tablet/</link>
       <pubDate>Sat, 15 Oct 2022 07:10:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/212280-starting-to-look-like-a-tablet/</guid>
-      <description>View or comment on this project log on Hackaday.io
-I soldered my backlight controller IC onto a QFN breakout board and bodged some connections over to my PCB, so that I could view my LCD without having to provide an external backlight.
-The mess of wires here is mostly bodge connections from that QFN breakout to traces on the PCB -- battery power, i2c, PWM and enable pins, and the anode + cathode pins for the LCD backlight.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;I soldered my backlight controller IC onto a QFN breakout board and bodged some connections over to my PCB, so that I could view my LCD without having to provide an external backlight.&#xA;The mess of wires here is mostly bodge connections from that QFN breakout to traces on the PCB -- battery power, i2c, PWM and enable pins, and the anode + cathode pins for the LCD backlight.</description>
     </item>
-    
     <item>
       <title>Pipad: The LCD works!</title>
       <link>https://www.evankrall.com/posts/pipad/logs/211856-the-lcd-works/</link>
       <pubDate>Fri, 07 Oct 2022 07:41:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/211856-the-lcd-works/</guid>
-      <description>View or comment on this project log on Hackaday.io
-After finding and fixing a few silly mistakes, I finally got the LCD working:The iPad&#39;s LCD displaying glxgears, backlit by a makeshift backlight — the circuitry for driving the built-in backlight had a mistake that I haven&#39;t fixed yet, documented in this project log. The issues I discovered that I had to fix were:The registers for HFP, HBP, and Hsync pulse width are 8 bits on the sn65dsi83, but I was trying to set several of these to values above 255.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;After finding and fixing a few silly mistakes, I finally got the LCD working:&#xD;The iPad&#39;s LCD displaying glxgears, backlit by a makeshift backlight — the circuitry for driving the built-in backlight had a mistake that I haven&#39;t fixed yet, documented in this project log. The issues I discovered that I had to fix were:&#xD;The registers for HFP, HBP, and Hsync pulse width are 8 bits on the sn65dsi83, but I was trying to set several of these to values above 255.</description>
     </item>
-    
     <item>
       <title>Pipad: Some progress on the LCD</title>
       <link>https://www.evankrall.com/posts/pipad/logs/208195-some-progress-on-the-lcd/</link>
       <pubDate>Mon, 04 Jul 2022 06:24:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/208195-some-progress-on-the-lcd/</guid>
-      <description>View or comment on this project log on Hackaday.io
-The iPad&#39;s LCD wants its video input data in the LVDS format, but the CM4 can&#39;t output LVDS. It can, however, output DSI video, and there are chips like the sn65dsi83-q1 from TI which can convert from DSI to LVDS.
-About a year ago, I had gotten the sn65dsi83 somewhat working on the previous revision of my board. However, I ran into an issue with that board design that was difficult to work around: That board was designed to work as a hat for a full-size Pi (for ease of controlling which parts of the board were connected), so it only supported the 2 lanes of DSI that are exposed on the 15-pin display FFC on the Pi 4.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;The iPad&#39;s LCD wants its video input data in the LVDS format, but the CM4 can&#39;t output LVDS. It can, however, output DSI video, and there are chips like the sn65dsi83-q1 from TI which can convert from DSI to LVDS.&#xA;About a year ago, I had gotten the sn65dsi83 somewhat working on the previous revision of my board. However, I ran into an issue with that board design that was difficult to work around: That board was designed to work as a hat for a full-size Pi (for ease of controlling which parts of the board were connected), so it only supported the 2 lanes of DSI that are exposed on the 15-pin display FFC on the Pi 4.</description>
     </item>
-    
     <item>
       <title>Pipad: Getting the GT9110 touchscreen controller working</title>
       <link>https://www.evankrall.com/posts/pipad/logs/208187-getting-the-gt9110-touchscreen-controller-working/</link>
       <pubDate>Mon, 04 Jul 2022 02:49:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/208187-getting-the-gt9110-touchscreen-controller-working/</guid>
-      <description>View or comment on this project log on Hackaday.io
-I&#39;ve been testing out the GT9110 for the past few days, and finally got it working today.
-My board uses a Goodix GT9110 touchscreen controller, which is closely related to a few other parts (GT911, GT928, etc.), and is basically the only touchscreen controller that I could find which met my requirements:
-Has enough drive and sense pins to work with my touchscreenA reasonable footprint which doesn&#39;t require expensive, high-density PCBs (which excludes the mXT2952, an 0.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;I&#39;ve been testing out the GT9110 for the past few days, and finally got it working today.&#xA;My board uses a Goodix GT9110 touchscreen controller, which is closely related to a few other parts (GT911, GT928, etc.), and is basically the only touchscreen controller that I could find which met my requirements:&#xA;Has enough drive and sense pins to work with my touchscreenA reasonable footprint which doesn&#39;t require expensive, high-density PCBs (which excludes the mXT2952, an 0.</description>
     </item>
-    
     <item>
       <title>Pipad: Real-time clock: It&#39;s nice when something is easy.</title>
       <link>https://www.evankrall.com/posts/pipad/logs/207999-real-time-clock-its-nice-when-something-is-easy/</link>
       <pubDate>Wed, 29 Jun 2022 07:18:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/207999-real-time-clock-its-nice-when-something-is-easy/</guid>
-      <description>View or comment on this project log on Hackaday.io
-At the very last minute before ordering my PCBs, I realized I probably wanted a real-time clock on the board somewhere. I searched on Digi-Key, found the RV-8263-C7, which was:
-in stock (not anymore, lol)cheaptinyrequires minimal external components (just a decoupling cap and a pull-up resistor on an output enable pin)has a Linux kernel driver (this chip has the same protocol as the PCF85063) I found an empty spot on my board with I2C and VBAT lines nearby, and laid it out in a few minutes.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;At the very last minute before ordering my PCBs, I realized I probably wanted a real-time clock on the board somewhere. I searched on Digi-Key, found the RV-8263-C7, which was:&#xA;in stock (not anymore, lol)cheaptinyrequires minimal external components (just a decoupling cap and a pull-up resistor on an output enable pin)has a Linux kernel driver (this chip has the same protocol as the PCF85063) I found an empty spot on my board with I2C and VBAT lines nearby, and laid it out in a few minutes.</description>
     </item>
-    
     <item>
       <title>Pipad: Figuring out why the CM4 wouldn&#39;t boot when attached to my board</title>
       <link>https://www.evankrall.com/posts/pipad/logs/207834-figuring-out-why-the-cm4-wouldnt-boot-when-attached-to-my-board/</link>
       <pubDate>Sun, 26 Jun 2022 08:27:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/207834-figuring-out-why-the-cm4-wouldnt-boot-when-attached-to-my-board/</guid>
-      <description>View or comment on this project log on Hackaday.io
-In my previous log entry, I had fried my CM4 by shorting 5V to 3.3V, so I had to order a replacement, which arrived last week.
-The next thing for me to test is whether I can boot the CM4 on my board, so I installed Raspberry Pi OS and set enable_uart=1 in /boot/config.txt. With the CM4 still in the CM4IO, I verified that I could see boot messages and log into the CM4 over serial.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;In my previous log entry, I had fried my CM4 by shorting 5V to 3.3V, so I had to order a replacement, which arrived last week.&#xA;The next thing for me to test is whether I can boot the CM4 on my board, so I installed Raspberry Pi OS and set enable_uart=1 in /boot/config.txt. With the CM4 still in the CM4IO, I verified that I could see boot messages and log into the CM4 over serial.</description>
     </item>
-    
     <item>
       <title>Pipad: CM4 carrier board: chip shortage pain, bodges, silly mistakes, and tragedy.</title>
       <link>https://www.evankrall.com/posts/pipad/logs/207483-cm4-carrier-board-chip-shortage-pain-bodges-silly-mistakes-and-tragedy/</link>
       <pubDate>Tue, 14 Jun 2022 07:56:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/207483-cm4-carrier-board-chip-shortage-pain-bodges-silly-mistakes-and-tragedy/</guid>
-      <description>View or comment on this project log on Hackaday.io
-Chip shortage problems Shortly after my last project log, I tried to place an order for all the new components that I&#39;d need for the next revision of my board, as well as re-stocking anything that I had already used most of. I discovered that my backlight controller of choice had gone out of stock with indefinite lead times, so I had to swap to a different backlight driver.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;Chip shortage problems Shortly after my last project log, I tried to place an order for all the new components that I&#39;d need for the next revision of my board, as well as re-stocking anything that I had already used most of. I discovered that my backlight controller of choice had gone out of stock with indefinite lead times, so I had to swap to a different backlight driver.</description>
     </item>
-    
     <item>
       <title>Pipad: RPi CM4 and Radxa CM3 versions of the board</title>
       <link>https://www.evankrall.com/posts/pipad/logs/202654-rpi-cm4-and-radxa-cm3-versions-of-the-board/</link>
       <pubDate>Wed, 26 Jan 2022 07:53:00 -0800</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/202654-rpi-cm4-and-radxa-cm3-versions-of-the-board/</guid>
-      <description>View or comment on this project log on Hackaday.io
-Since the last time I had a board made, I&#39;ve discovered several revisions that I needed to make:
-- The 5V boost of the bq25895 cuts out long enough to shut off the Pi when you connect USB power.
-- I needed extra lanes of DSI going from the CM4 to the SN65DSI83 chip in order for all the clock rates to fall within the ranges allowed by the SN65 and the iPad&#39;s display.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;Since the last time I had a board made, I&#39;ve discovered several revisions that I needed to make:&#xA;- The 5V boost of the bq25895 cuts out long enough to shut off the Pi when you connect USB power.&#xA;- I needed extra lanes of DSI going from the CM4 to the SN65DSI83 chip in order for all the clock rates to fall within the ranges allowed by the SN65 and the iPad&#39;s display.</description>
     </item>
-    
     <item>
       <title>Absurdle Hard-Mode High Score</title>
       <link>https://www.evankrall.com/posts/absurdle-highscore/</link>
       <pubDate>Sat, 15 Jan 2022 14:31:00 -0800</pubDate>
-      
       <guid>https://www.evankrall.com/posts/absurdle-highscore/</guid>
-      <description>I have managed to play what I believe to be the longest possible non-trivial game of Absurdle.
-What is Absurdle (and what is Wordle)? Wordle is a game by Josh Wardle, in which you try to guess the secret five-letter word of the day. You have 6 guesses, and each time you make a guess, the game colors each of your letters either black ⬛️, yellow 🟨, or green 🟩. A green letter means that you got that letter in the right position - i.</description>
+      <description>I have managed to play what I believe to be the longest possible non-trivial game of Absurdle.&#xA;What is Absurdle (and what is Wordle)? Wordle is a game by Josh Wardle, in which you try to guess the secret five-letter word of the day. You have 6 guesses, and each time you make a guess, the game colors each of your letters either black ⬛️, yellow 🟨, or green 🟩. A green letter means that you got that letter in the right position - i.</description>
     </item>
-    
     <item>
       <title>Pipad: Colors! (sn65dsi83 test pattern)</title>
       <link>https://www.evankrall.com/posts/pipad/logs/196964-colors-sn65dsi83-test-pattern/</link>
       <pubDate>Mon, 23 Aug 2021 06:26:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/196964-colors-sn65dsi83-test-pattern/</guid>
-      <description>View or comment on this project log on Hackaday.io
-Thanks to the help of some folks on the Raspberry Pi forums, I&#39;ve got the sn65dsi83 driver loading, and the Pi generating enough DSI signal for the SN65DSI83 to be able to generate a test pattern (it uses the DSI clock to generate the LVDS clock)
-Hopefully I can get those black lines to go away.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;Thanks to the help of some folks on the Raspberry Pi forums, I&#39;ve got the sn65dsi83 driver loading, and the Pi generating enough DSI signal for the SN65DSI83 to be able to generate a test pattern (it uses the DSI clock to generate the LVDS clock)&#xA;Hopefully I can get those black lines to go away.</description>
     </item>
-    
     <item>
       <title>Pipad: Using ftrace to debug device tree problems</title>
       <link>https://www.evankrall.com/posts/pipad/logs/196672-using-ftrace-to-debug-device-tree-problems/</link>
       <pubDate>Wed, 18 Aug 2021 07:28:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/196672-using-ftrace-to-debug-device-tree-problems/</guid>
-      <description>View or comment on this project log on Hackaday.io
-For the past few days, I&#39;ve been trying to get the sn65ds83 driver (recently added to linux) running and talking to my board. It has been a (re-)learning experience trying to get this device tree overlay to cooperate.
-Following my own advice from the last time I touched device trees, I used udevadm monitor and dmesg -w to watch for kernel/udev messages while loading my overlay with sudo dtoverlay pipad_screen.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;For the past few days, I&#39;ve been trying to get the sn65ds83 driver (recently added to linux) running and talking to my board. It has been a (re-)learning experience trying to get this device tree overlay to cooperate.&#xA;Following my own advice from the last time I touched device trees, I used udevadm monitor and dmesg -w to watch for kernel/udev messages while loading my overlay with sudo dtoverlay pipad_screen.</description>
     </item>
-    
     <item>
       <title>Pipad: First light: testing and fixing the backlight controller</title>
       <link>https://www.evankrall.com/posts/pipad/logs/195169-first-light-testing-and-fixing-the-backlight-controller/</link>
       <pubDate>Sat, 10 Jul 2021 05:07:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/195169-first-light-testing-and-fixing-the-backlight-controller/</guid>
-      <description>View or comment on this project log on Hackaday.io
-Based on my guess of how complicated testing the different components will be, I decided to test the LCD backlight controller next. For this part of my PCB, I basically built the example circuit from the datasheet of the TPS61176. This chip is essentially a DC-DC boost converter and 6 constant-current/PWM sinks. You control it by providing a PWM signal on its PWM/EN input.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;Based on my guess of how complicated testing the different components will be, I decided to test the LCD backlight controller next. For this part of my PCB, I basically built the example circuit from the datasheet of the TPS61176. This chip is essentially a DC-DC boost converter and 6 constant-current/PWM sinks. You control it by providing a PWM signal on its PWM/EN input.</description>
     </item>
-    
     <item>
       <title>Pipad: Power supply testing, part 2</title>
       <link>https://www.evankrall.com/posts/pipad/logs/195091-power-supply-testing-part-2/</link>
       <pubDate>Thu, 08 Jul 2021 06:05:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/195091-power-supply-testing-part-2/</guid>
-      <description>View or comment on this project log on Hackaday.io
-I assembled the front of my board yesterday (dealing with 0402 components is tedious. I really should just pay JLCPCB to solder on most of the passives for me.) Today, I wanted to quickly test the power supply to make sure I hadn&#39;t broken anything yesterday.
-I attached a battery (I managed to find another LiPo battery buried in a drawer), checked output voltage (5.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;I assembled the front of my board yesterday (dealing with 0402 components is tedious. I really should just pay JLCPCB to solder on most of the passives for me.) Today, I wanted to quickly test the power supply to make sure I hadn&#39;t broken anything yesterday.&#xA;I attached a battery (I managed to find another LiPo battery buried in a drawer), checked output voltage (5.</description>
     </item>
-    
     <item>
       <title>Pipad: Power supply testing</title>
       <link>https://www.evankrall.com/posts/pipad/logs/195031-power-supply-testing/</link>
       <pubDate>Tue, 06 Jul 2021 06:31:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/195031-power-supply-testing/</guid>
-      <description>View or comment on this project log on Hackaday.io
-So I finally finished designing v0.0.1 of my PCB, and had them made by JLCPCB. This prototype has:
-touchscreen controllerMIPI-DSI to LVDS converterLED backlight driverbattery controller/boost converteraudio codec, speaker amplifiers, and footprints for speaker and headphone connectorsconnectors for the 30-pin dock board and the ambient light sensortesting the fit of my v0.0.1 prototype board inside the iPad.Instead of having the two 100-pin connectors for the CM4 like the final board will have, this version of the PCB is designed sort of like a Pi HAT, with a 40-pin header on the bottom.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;So I finally finished designing v0.0.1 of my PCB, and had them made by JLCPCB. This prototype has:&#xA;touchscreen controllerMIPI-DSI to LVDS converterLED backlight driverbattery controller/boost converteraudio codec, speaker amplifiers, and footprints for speaker and headphone connectorsconnectors for the 30-pin dock board and the ambient light sensortesting the fit of my v0.0.1 prototype board inside the iPad.Instead of having the two 100-pin connectors for the CM4 like the final board will have, this version of the PCB is designed sort of like a Pi HAT, with a 40-pin header on the bottom.</description>
     </item>
-    
     <item>
       <title>Pipad: Attempting to write a device tree overlay for the soundcard</title>
       <link>https://www.evankrall.com/posts/pipad/logs/190683-attempting-to-write-a-device-tree-overlay-for-the-soundcard/</link>
       <pubDate>Mon, 22 Mar 2021 03:54:00 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/190683-attempting-to-write-a-device-tree-overlay-for-the-soundcard/</guid>
-      <description>View or comment on this project log on Hackaday.io
-Since my last log, I connected the other ends of the magnet wires to female header pins so that I can attach to my RPi 4. I really, really would recommend against trying to do it this way. I&#39;m either gonna spend the board space and use 0.1&#34; headers next time, or go for something easy to solder like an FFC so I can make a matching breakout board.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;Since my last log, I connected the other ends of the magnet wires to female header pins so that I can attach to my RPi 4. I really, really would recommend against trying to do it this way. I&#39;m either gonna spend the board space and use 0.1&#34; headers next time, or go for something easy to solder like an FFC so I can make a matching breakout board.</description>
     </item>
-    
     <item>
       <title>Pipad: Finally, things to solder!</title>
       <link>https://www.evankrall.com/posts/pipad/logs/190208-finally-things-to-solder/</link>
       <pubDate>Tue, 09 Mar 2021 08:01:00 -0800</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/190208-finally-things-to-solder/</guid>
-      <description>View or comment on this project log on Hackaday.io
-My most recent JLCPCB order arrived today, which contained:
-The i2s soundcard based around the TLV320AIC3104 from TI.Breakout board for the AXK770147G used to connect the logic board to the portrait dock connector daughterboard.Breakout board for the AA03-S024VA1 used to connect the logic board to the ambient light sensor.I also included a stencil for the soundcard.
-I soldered the breakout board for the AXK770147G with the drag soldering technique, which I definitely need to practice.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;My most recent JLCPCB order arrived today, which contained:&#xA;The i2s soundcard based around the TLV320AIC3104 from TI.Breakout board for the AXK770147G used to connect the logic board to the portrait dock connector daughterboard.Breakout board for the AA03-S024VA1 used to connect the logic board to the ambient light sensor.I also included a stencil for the soundcard.&#xA;I soldered the breakout board for the AXK770147G with the drag soldering technique, which I definitely need to practice.</description>
     </item>
-    
     <item>
       <title>Pipad: Video output research</title>
       <link>https://www.evankrall.com/posts/pipad/logs/189947-video-output-research/</link>
       <pubDate>Tue, 02 Mar 2021 07:14:00 -0800</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/189947-video-output-research/</guid>
-      <description>View or comment on this project log on Hackaday.io
-While I wait for my audio board and breakout boards to show up, I started working on the video output side of things.
-The Raspberry Pi CM4 has four ways to output video:
-2x HDMI2x MIPI DSI1x DPI1x CompositeI need to convert these into three different formats (in order of priority):
-LVDS (FPD-Link or OLDI maybe) for the LP097X02-SLA1 built-in display.DisplayPort for powering 30-pin video dongles such as the Digital AV Adapter (HDMI) or the 30-pin to VGA Adapter.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;While I wait for my audio board and breakout boards to show up, I started working on the video output side of things.&#xA;The Raspberry Pi CM4 has four ways to output video:&#xA;2x HDMI2x MIPI DSI1x DPI1x CompositeI need to convert these into three different formats (in order of priority):&#xA;LVDS (FPD-Link or OLDI maybe) for the LP097X02-SLA1 built-in display.DisplayPort for powering 30-pin video dongles such as the Digital AV Adapter (HDMI) or the 30-pin to VGA Adapter.</description>
     </item>
-    
     <item>
       <title>Pipad: A more reasonable touchscreen controller IC</title>
       <link>https://www.evankrall.com/posts/pipad/logs/189710-a-more-reasonable-touchscreen-controller-ic/</link>
       <pubDate>Thu, 25 Feb 2021 08:06:00 -0800</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/189710-a-more-reasonable-touchscreen-controller-ic/</guid>
-      <description>View or comment on this project log on Hackaday.io
-In my first project log, I had designed a PCB for interfacing with the touchscreen digitizer, based around Atmel&#39;s mXT2952, which was the only device I managed to find that had:
-datasheets availableenough drive / sense pins for the iPad&#39;s screen (40 drive, 30 sense)a reasonable minimum order quantityUnfortunately, the mXT2952 is a tiny 5mm x 10mm 162-pin BGA, with 0.5mm pitch.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;In my first project log, I had designed a PCB for interfacing with the touchscreen digitizer, based around Atmel&#39;s mXT2952, which was the only device I managed to find that had:&#xA;datasheets availableenough drive / sense pins for the iPad&#39;s screen (40 drive, 30 sense)a reasonable minimum order quantityUnfortunately, the mXT2952 is a tiny 5mm x 10mm 162-pin BGA, with 0.5mm pitch.</description>
     </item>
-    
     <item>
       <title>Pipad: First prototype of soundcard, some breakout boards, 30-pin connector decision</title>
       <link>https://www.evankrall.com/posts/pipad/logs/189638-first-prototype-of-soundcard-some-breakout-boards-30-pin-connector-decision/</link>
       <pubDate>Tue, 23 Feb 2021 08:06:00 -0800</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/189638-first-prototype-of-soundcard-some-breakout-boards-30-pin-connector-decision/</guid>
-      <description>View or comment on this project log on Hackaday.io
-After the last project log, I posted my soundcard board to /r/printedcircuitboard, which was very helpful. Probably the single most helpful suggestion was to AC-couple the headphone jack instead of DC-coupling it. (The TI codec I chose can DC-couple the headphone port -- it provides pins that can be driven at some common voltage above ground, which the left and right channels are referenced to.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;After the last project log, I posted my soundcard board to /r/printedcircuitboard, which was very helpful. Probably the single most helpful suggestion was to AC-couple the headphone jack instead of DC-coupling it. (The TI codec I chose can DC-couple the headphone port -- it provides pins that can be driven at some common voltage above ground, which the left and right channels are referenced to.</description>
     </item>
-    
     <item>
       <title>Pipad: The beginnings of the soundcard</title>
       <link>https://www.evankrall.com/posts/pipad/logs/189260-the-beginnings-of-the-soundcard/</link>
       <pubDate>Fri, 12 Feb 2021 22:21:00 -0800</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/189260-the-beginnings-of-the-soundcard/</guid>
-      <description>View or comment on this project log on Hackaday.io
-I&#39;m not sure why I&#39;m working on the soundcard now; sound is pretty low priority (below power, display, touch, network connectivity...), but the speaker and headphone connectors are close to the touchscreen connectors.
-Since my touchscreen controller is going to be expensive to manufacture, I&#39;m going to have it on a separate PCB than the rest of the project. The board that has my audio codec will wrap around the touchscreen controller, since it needs to have connectors for the speakers, headphone/mic, and potentially send line out audio to the portrait dock connector.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;I&#39;m not sure why I&#39;m working on the soundcard now; sound is pretty low priority (below power, display, touch, network connectivity...), but the speaker and headphone connectors are close to the touchscreen connectors.&#xA;Since my touchscreen controller is going to be expensive to manufacture, I&#39;m going to have it on a separate PCB than the rest of the project. The board that has my audio codec will wrap around the touchscreen controller, since it needs to have connectors for the speakers, headphone/mic, and potentially send line out audio to the portrait dock connector.</description>
     </item>
-    
     <item>
       <title>Pipad: The big scary touchscreen connectors</title>
       <link>https://www.evankrall.com/posts/pipad/logs/188901-the-big-scary-touchscreen-connectors/</link>
       <pubDate>Wed, 03 Feb 2021 07:59:00 -0800</pubDate>
-      
       <guid>https://www.evankrall.com/posts/pipad/logs/188901-the-big-scary-touchscreen-connectors/</guid>
-      <description>View or comment on this project log on Hackaday.io
-The biggest unknown to me when starting this project was how I was going to interface with the touchscreen. In general, all the other connectors on the logic board are some sort of standard signaling scheme, like analog audio, I2C, USB, SDIO, or LVDS. I&#39;ve never worked with a capacitive touchscreen before, so I had no clue where to start. (I&#39;ve never worked with LVDS before either, but I at least have an idea where I&#39;d learn things about it.</description>
+      <description>View or comment on this project log on Hackaday.io&#xA;The biggest unknown to me when starting this project was how I was going to interface with the touchscreen. In general, all the other connectors on the logic board are some sort of standard signaling scheme, like analog audio, I2C, USB, SDIO, or LVDS. I&#39;ve never worked with a capacitive touchscreen before, so I had no clue where to start. (I&#39;ve never worked with LVDS before either, but I at least have an idea where I&#39;d learn things about it.</description>
     </item>
-    
     <item>
       <title>Designing a PCB in EasyEDA and getting it assembled by JLCPCB</title>
       <link>https://www.evankrall.com/posts/jlcpcb-smt/</link>
       <pubDate>Mon, 12 Oct 2020 19:20:28 -0700</pubDate>
-      
       <guid>https://www.evankrall.com/posts/jlcpcb-smt/</guid>
-      <description>Recently I designed a PCB and had it made and assembled by JLCPCB. This is the first time I&amp;rsquo;ve ever done anything like this &amp;ndash; I&amp;rsquo;ve designed circuits on paper, built them on breadboards, soldered circuits together on proto-board PCBs, but before this project I&amp;rsquo;d never used an EDA program, ordered PCBs, or gotten a board assembled by a manufacturer. I figure it&amp;rsquo;s worth writing up what I&amp;rsquo;ve learned.
-As of the time of writing, I haven&amp;rsquo;t received the assembled boards, so this isn&amp;rsquo;t a review of JLCPCB&amp;rsquo;s PCB or SMT services.</description>
+      <description>Recently I designed a PCB and had it made and assembled by JLCPCB. This is the first time I&amp;rsquo;ve ever done anything like this &amp;ndash; I&amp;rsquo;ve designed circuits on paper, built them on breadboards, soldered circuits together on proto-board PCBs, but before this project I&amp;rsquo;d never used an EDA program, ordered PCBs, or gotten a board assembled by a manufacturer. I figure it&amp;rsquo;s worth writing up what I&amp;rsquo;ve learned.&#xA;As of the time of writing, I haven&amp;rsquo;t received the assembled boards, so this isn&amp;rsquo;t a review of JLCPCB&amp;rsquo;s PCB or SMT services.</description>
     </item>
-    
   </channel>
 </rss>
